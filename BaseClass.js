@@ -60,8 +60,12 @@ class CharacteristicsSubset {
 }
 
 class Mtgobject {
+    // characteristics
     printedCharacteristicsSubsets;
     currentCharacteristics;
+
+    //
+    zone;
 
     // statuses on battlefield
     tapped;
@@ -69,7 +73,29 @@ class Mtgobject {
     facedDown;
     phaseOut;
 
+
+
     isDoubleFaced;
 }
 
+class Zone {
+    name;
+}
 
+class Player {
+    life;
+    abilities;
+}
+
+class Effect {
+    source;  // duplicated source ability
+    controller;
+}
+
+class GameState {
+    turn;
+    phase;
+    players;
+    mtgObjects;
+    effects;
+}
