@@ -1,6 +1,6 @@
 {
   "name": "@4423/azorius.js",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Game framework of Magic: the Gathering based on Comprehensive Rules",
   "type": "module",
   "main": "index.js",
