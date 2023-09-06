@@ -1,0 +1,16 @@
+{
+  "name": "@4423/azorius.js",
+  "version": "1.0.0",
+  "description": "Game framework of Magic: the Gathering based on Comprehensive Rules",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mtgsdk": "^1.0.0"
+  }
+}
