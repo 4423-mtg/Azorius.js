@@ -1,33 +1,34 @@
-class Color {
+///////////// Characteristics /////////////////
+export class Color {
     name;
 }
 
-class colorIndicator {
+export class ColorIndicator {
     colors;
 }
 
-class ManaType{
+export class ManaType {
     name;
 }
 
-class ManaGlyph {
+export class ManaGlyph {
     manaType;
     amount;
     isPhyrexian;
     isSnow;
 }
 
-class ManaSymbol {
+export class ManaSymbol {
     glyph;
     isHybrid;
 }
 
-class SubType {
+export class SubType {
     name;
     cardType;
 }
 
-class Ability {
+export class AbilityOnObject {
     text;
     abilityType; // triggered / activated / static / spell
 
@@ -36,8 +37,8 @@ class Ability {
     // isCharacteristicDefiningAbility;
 }
 
-class CharacteristicsSubset {
-    characteristicsType;
+export class CharacteristicsSubset {
+    characteristicsType; // split, flip, double-face, adventurer, prototype
 
     name;
     manaCost;
@@ -59,13 +60,26 @@ class CharacteristicsSubset {
     dependingCharacteristics;
 }
 
-class Mtgobject {
+/////////// Spell, Ability, Effect /////////////////
+export class AbilityOnStack {
+    source;
+    abilityOnObject;
+}
+
+export class Effect {
+    id;
+
+    // source;  // duplicated source ability
+    controller;
+}
+
+/////////// Fundamental Class /////////////////
+export class MtgObject {
+    // card, token and copy of card
+
     // characteristics
     printedCharacteristicsSubsets;
     currentCharacteristics;
-
-    //
-    zone;
 
     // statuses on battlefield
     tapped;
@@ -73,29 +87,18 @@ class Mtgobject {
     facedDown;
     phaseOut;
 
-
-
     isDoubleFaced;
 }
 
-class Zone {
+export class Zone {
     name;
+    objects;
 }
 
-class Player {
+export class Player {
+    id;
+    name;
     life;
+    counters;
     abilities;
-}
-
-class Effect {
-    source;  // duplicated source ability
-    controller;
-}
-
-class GameState {
-    turn;
-    phase;
-    players;
-    mtgObjects;
-    effects;
 }
