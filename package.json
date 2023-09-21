@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mtgsdk": "^1.0.0"
+    "mtgsdk": "^1.0.0",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "prettier": "^3.0.3"

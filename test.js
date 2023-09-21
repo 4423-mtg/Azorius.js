@@ -1,38 +1,62 @@
-// const mtgsdk = require('mtgsdk')
+"use strict";
 import mtgsdk from "mtgsdk";
+import fetch from "node-fetch";
+import fs from "fs";
 
 main();
 
 async function main() {
-    getCard();
-    getText("Murder");
+    saveCard("Ad Nauseam");
+    // recordCard([
+    //     "Murder",
+    //     "Innocent Blood",
+    //     "Rampant Growth",
+    //     "Divination",
+    //     "Mystical Tutor",
+    //     "Ad Nauseam",
+    // ]);
 }
 
-async function getCard() {
-    let cards = await mtgsdk.card.where({ multiverseid: 409741 });
-    let set = new Set();
+async function fetchCardObj(name) {
+    // get card object
+    const url = `https://api.scryfall.com/cards/named?fuzzy=${name}`;
+    console.log("Fetching ...");
+    const response = await fetch(url, { method: "GET" });
+    // console.log(response);
+    const obj = await response.json();
 
-    cards.forEach((c) => console.log(Object.keys(c)));
-    cards.forEach((c) =>
-        set.add(
-            JSON.stringify(
-                {
-                    name: c.name,
-                    manaCost: c.manaCost,
-                    text: c.text,
-                    layout: c.layout,
-                },
-                undefined,
-                "  ",
-            ),
-        ),
+    // extract info
+    // console.log(JSON.stringify([obj.name, obj.oracle_text], undefined, '  '));
+    // console.log(JSON.stringify(obj, undefined, '  '));
+    return obj;
+}
+
+async function saveCard(cardName) {
+    // get card object
+    const cardobj = await fetchCardObj(cardName);
+    fs.writeFileSync(
+        `./data/${cardName}.json`,
+        JSON.stringify(cardobj, undefined, "  "),
     );
-    Array.from(set).forEach((e) => console.log(e));
+    console.log("Saved.");
 }
 
-async function getText(cardName) {
-    let cards = await mtgsdk.card.where({ name: cardName });
-    let text = cards[0].text;
-    console.log(text);
-    return text;
+async function recordCard(names) {
+    let cards = [];
+    for (const name of names) {
+        const obj = await fetchCardObj(name);
+        const obj2 = {
+            name: obj.name,
+            type_line: obj.type_line,
+            text: obj.oracle_text,
+        };
+        console.log(obj2);
+        cards.push(obj2);
+    }
+
+    // output the object into a file
+    fs.writeFileSync(
+        "./data/cards.json",
+        JSON.stringify(cards, undefined, 2) + "\n",
+    );
 }
