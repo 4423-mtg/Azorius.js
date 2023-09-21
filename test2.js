@@ -3,10 +3,10 @@ console.log("test2.js");
 
 // console.log(JSON.stringify(adNauseam, undefined, 4));
 
-const obj = {
-    a: 1,
-    b: 2,
-    c: 3,
-};
+function f1(array) {
+    console.log(JSON.stringify(array));
+    array = [array];
+    console.log(JSON.stringify(array));
+}
 
-console.log(obj.a);
+f1(["a"]);

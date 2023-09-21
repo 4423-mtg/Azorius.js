@@ -1,57 +1,62 @@
 import { GameState } from "./Object";
 
-export const turnDef = {
-    beginning: ["untap", "upkeep", "draw"],
-    precombatMain: [],
-    combat: ["beginning", "attack", "block", "damage", "end"],
-    postcombatMain: [],
-    ending: ["end", "cleanup"],
-};
+// export const turnDef = {
+//     beginning: ["untap", "upkeep", "draw"],
+//     precombatMain: [],
+//     combat: ["beginning", "attack", "block", "damage", "end"],
+//     postcombatMain: [],
+//     ending: ["end", "cleanup"],
+// };
 
-class HistoryEntry {
-    actions;
-    gameStates;
+class StateHistoryEntry {
+    action;
+    gameState;
+
+    constructor(action = undefined, gameState = undefined) {
+        this.action = action;
+        this.gameState = gameState;
+    }
 }
-class GameHistory {
-    entries;
+export class StateHistory {
+    entries = [];
+    constructor(state = undefined) {
+        this.entries = [state];
+    }
 
     // functions
     // TODO
 }
 
-export class Engine {
-    decks;
-    initialLife = 20;
-    turnDef = turnDef;
+// export class Engine {
+//     decks;
+//     initialLife = 20;
+//     turnDef = turnDef;
 
-    gameHistory;
-    gameState;
+//     gameHistory;
+//     gameState;
 
-    constructor() {
-        console.log("<This is Engine.constructor().>");
-    }
+//     constructor() {
+//         console.log("<This is Engine.constructor().>");
+//     }
 
-    StartGame() {
-        console.log("<This is Engine.StartGame().>");
+//     StartGame() {
+//         console.log("<This is Engine.StartGame().>");
 
-        // init
-        this.gameState = new GameState();
+//         // init
+//         this.gameState = new GameState();
 
-        // go
-    }
+//         // go
+//     }
 
-    GetAction(action) {}
-    ExecAction(action) {}
-    RunStateBasedAction() {}
-}
-
-export const gameHistory = new GameHistory();
+//     GetAction(action) {}
+//     ExecAction(action) {}
+//     RunStateBasedAction() {}
+// }
 
 export class ActionInterpreter {
-    actions;
-
-    execute() {
-        while (this.actions.length > 0) {
+    interpret(actions) {
+        if (!Array.isArray(actions)) actions = [actions];
+        while (actions.length > 0) {
             const action = this.actions[0];
             if (Array.isArray(action)) {
                 // 同時にやる行動って例えば何？

@@ -1,4 +1,4 @@
 # Azorius.js
-Game framework Magic: the Gathering based on Comprehensive Rules
+Effect processing framework of Magic: the Gathering based on Comprehensive Rules
 
 work in progress

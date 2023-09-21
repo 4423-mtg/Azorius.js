@@ -1,4 +1,9 @@
-import { Deck } from "./Object.js";
-import { ActionInterpreter } from "./Engine.js";
+import { ActionInterpreter, StateHistory } from "./Engine.js";
+import { adNauseam } from "./CardSample.js";
 
-const interpreter = new ActionInterpreter();
+const stateHistory = new StateHistory();
+const interpreter = new ActionInterpreter(stateHistory);
+
+const actions = [adNauseam];
+
+interpreter.Interpret(actions);
